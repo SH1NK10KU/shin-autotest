@@ -1,0 +1,171 @@
+<!ELEMENT dataset (
+    actor*,
+    address*,
+    category*,
+    city*,
+    country*,
+    customer*,
+    film*,
+    film_actor*,
+    film_category*,
+    film_text*,
+    inventory*,
+    language*,
+    payment*,
+    rental*,
+    staff*,
+    store*)>
+
+<!ELEMENT actor EMPTY>
+<!ATTLIST actor
+    actor_id CDATA #REQUIRED
+    first_name CDATA #REQUIRED
+    last_name CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT address EMPTY>
+<!ATTLIST address
+    address_id CDATA #REQUIRED
+    address CDATA #REQUIRED
+    address2 CDATA #IMPLIED
+    district CDATA #REQUIRED
+    city_id CDATA #REQUIRED
+    postal_code CDATA #IMPLIED
+    phone CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT category EMPTY>
+<!ATTLIST category
+    category_id CDATA #REQUIRED
+    name CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT city EMPTY>
+<!ATTLIST city
+    city_id CDATA #REQUIRED
+    city CDATA #REQUIRED
+    country_id CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT country EMPTY>
+<!ATTLIST country
+    country_id CDATA #REQUIRED
+    country CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT customer EMPTY>
+<!ATTLIST customer
+    customer_id CDATA #REQUIRED
+    store_id CDATA #REQUIRED
+    first_name CDATA #REQUIRED
+    last_name CDATA #REQUIRED
+    email CDATA #IMPLIED
+    address_id CDATA #REQUIRED
+    active CDATA #IMPLIED
+    create_date CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT film EMPTY>
+<!ATTLIST film
+    film_id CDATA #REQUIRED
+    title CDATA #REQUIRED
+    description CDATA #IMPLIED
+    release_year CDATA #IMPLIED
+    language_id CDATA #REQUIRED
+    original_language_id CDATA #IMPLIED
+    rental_duration CDATA #IMPLIED
+    rental_rate CDATA #IMPLIED
+    length CDATA #IMPLIED
+    replacement_cost CDATA #IMPLIED
+    rating CDATA #IMPLIED
+    special_features CDATA #IMPLIED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT film_actor EMPTY>
+<!ATTLIST film_actor
+    actor_id CDATA #REQUIRED
+    film_id CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT film_category EMPTY>
+<!ATTLIST film_category
+    film_id CDATA #REQUIRED
+    category_id CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT film_text EMPTY>
+<!ATTLIST film_text
+    film_id CDATA #REQUIRED
+    title CDATA #REQUIRED
+    description CDATA #IMPLIED
+>
+
+<!ELEMENT inventory EMPTY>
+<!ATTLIST inventory
+    inventory_id CDATA #REQUIRED
+    film_id CDATA #REQUIRED
+    store_id CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT language EMPTY>
+<!ATTLIST language
+    language_id CDATA #REQUIRED
+    name CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT payment EMPTY>
+<!ATTLIST payment
+    payment_id CDATA #REQUIRED
+    customer_id CDATA #REQUIRED
+    staff_id CDATA #REQUIRED
+    rental_id CDATA #IMPLIED
+    amount CDATA #REQUIRED
+    payment_date CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT rental EMPTY>
+<!ATTLIST rental
+    rental_id CDATA #REQUIRED
+    rental_date CDATA #REQUIRED
+    inventory_id CDATA #REQUIRED
+    customer_id CDATA #REQUIRED
+    return_date CDATA #IMPLIED
+    staff_id CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT staff EMPTY>
+<!ATTLIST staff
+    staff_id CDATA #REQUIRED
+    first_name CDATA #REQUIRED
+    last_name CDATA #REQUIRED
+    address_id CDATA #REQUIRED
+    picture CDATA #IMPLIED
+    email CDATA #IMPLIED
+    store_id CDATA #REQUIRED
+    active CDATA #IMPLIED
+    username CDATA #REQUIRED
+    password CDATA #IMPLIED
+    last_update CDATA #IMPLIED
+>
+
+<!ELEMENT store EMPTY>
+<!ATTLIST store
+    store_id CDATA #REQUIRED
+    manager_staff_id CDATA #REQUIRED
+    address_id CDATA #REQUIRED
+    last_update CDATA #IMPLIED
+>
+

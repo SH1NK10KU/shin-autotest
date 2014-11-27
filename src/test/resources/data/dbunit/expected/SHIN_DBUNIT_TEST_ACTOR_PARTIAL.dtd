@@ -1,0 +1,11 @@
+<!ELEMENT dataset (
+    ACTOR*)>
+
+<!ELEMENT ACTOR EMPTY>
+<!ATTLIST ACTOR
+    actor_id CDATA #REQUIRED
+    first_name CDATA #REQUIRED
+    last_name CDATA #REQUIRED
+    last_update CDATA #REQUIRED
+>
+

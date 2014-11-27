@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="none">
+	<test name="SampleTest">
+		<classes>
+			<class name="cn.shin.autotest.testcase.SampleTest">
+				<methods>
+					<include name="BaiduTest" />
+					<include name="QQTest" />
+					<include name="JsonToObjectTest" />
+					<include name="HttpInterfaceTest" />
+					<include name="DBUnitTest" />
+					<include name="HibernateTest" />
+					<include name="UploadFileTest" />
+				</methods>
+			</class> <!-- cn.shin.autotest.testcase.SampleTest -->
+		</classes>
+	</test> <!-- Test -->
+	<listeners>
+		<listener class-name="cn.shin.autotest.testng.RetryListener" />
+		<listener class-name="cn.shin.autotest.testng.TestResultListener" />
+		<listener class-name="org.testng.reporters.FailedReporter" />
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+	</listeners>
+	<usedefaultlisteners name="false" />
+</suite> <!-- Suite -->

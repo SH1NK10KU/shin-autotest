@@ -123,7 +123,7 @@ public class SampleTest extends BaseTest {
 		actor.setFirstName("Shin");
 		actor.setLastName("Feng");
 		actor.setLastUpdate(new Date());
-		// dao.save(actor);
+		dao.save(actor);
 
 		List<Actor> actorList = dao.getAll();
 		short maxId = actorList.get(actorList.size() - 1).getActorId();

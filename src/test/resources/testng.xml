@@ -16,7 +16,7 @@
 			</class> <!-- cn.shin.autotest.testcase.SampleTest -->
 		</classes>
 	</test> <!-- SampleTest -->
-	<test name="MokitoTest" junit="true">
+	<test name="MokitoTest">
 		<classes>
 			<class name="cn.shin.autotest.testcase.MokitoTest" />
 		</classes>

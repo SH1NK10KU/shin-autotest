@@ -9,4 +9,5 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(monochrome = true, format = { "pretty",
 		"html:cucumber/cucumber", "rerun:cucumber/rerun.txt" })
 public class CucumberTest {
+
 }

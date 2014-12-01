@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.fest.assertions.Assertions;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -45,7 +45,7 @@ public class SampleTest extends BaseTest {
 	}
 
 	@Test(description = "Search the keyword via Baidu.", groups = { "Sample",
-			"WebUITest" }, dataProvider = "SampleDataProvider")
+			"WebUITest" }, dataProvider = "TestDataProvider")
 	public void BaiduTest(Map<String, String> data) {
 		try {
 			driver = new WebDriverDecorator(data.get("Browser"));
@@ -53,8 +53,8 @@ public class SampleTest extends BaseTest {
 			BaiduPage baiduPage = new BaiduPage();
 			baiduPage.search(data.get("SearchContent"));
 			driver.wait(2);
-			AssertJUnit.assertEquals(data.get("ExpectedTitle"),
-					driver.getTitle());
+			Assertions.assertThat(driver.getTitle()).isEqualTo(
+					data.get("ExpectedTitle"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -63,14 +63,14 @@ public class SampleTest extends BaseTest {
 	}
 
 	@Test(description = "Open the page, 'www.qq.com'.", groups = { "Sample",
-			"WebUITest" }, dataProvider = "SampleDataProvider")
+			"WebUITest" }, dataProvider = "TestDataProvider")
 	public void QQTest(Map<String, String> data) {
 		try {
 			driver = new WebDriverDecorator(data.get("Browser"));
 			driver.get(data.get("URL"));
 			driver.wait(2);
-			AssertJUnit.assertEquals(data.get("ExpectedTitle"),
-					driver.getTitle());
+			Assertions.assertThat(driver.getTitle()).isEqualTo(
+					data.get("ExpectedTitle"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -86,19 +86,19 @@ public class SampleTest extends BaseTest {
 		Gson gson = new Gson();
 		Json object = gson.fromJson(json, type);
 
-		AssertJUnit.assertEquals(1, object.getCode());
-		AssertJUnit.assertEquals(2, object.getData().size());
-		AssertJUnit
-				.assertEquals("Shin", object.getData().get(0).getFirstname());
+		Assertions.assertThat(object.getCode()).isEqualTo(1);
+		Assertions.assertThat(object.getData().size()).isEqualTo(2);
+		Assertions.assertThat(object.getData().get(0).getFirstname())
+				.isEqualTo("Shin");
 	}
 
 	@Test(description = "HTTP Interface Sample Test", groups = { "Sample",
-			"InterfaceTest" }, dataProvider = "SampleDataProvider")
+			"InterfaceTest" }, dataProvider = "TestDataProvider")
 	public void HttpInterfaceTest(Map<String, String> data) {
 		IHttpClientUtil httpClientUtil = new HttpClientUtilImpl();
 		String html = httpClientUtil.getHttpGetResponse(
 				"http://www.baidu.com/s", data);
-		AssertJUnit.assertTrue(html.contains(data.get("ExpectedResult")));
+		Assertions.assertThat(html).contains(data.get("ExpectedResult"));
 	}
 
 	@Test(description = "DBUnit Sample Test", groups = { "Sample",
@@ -141,8 +141,7 @@ public class SampleTest extends BaseTest {
 			driver = new WebDriverDecorator("chrome");
 			driver.get("http://image.baidu.com/");
 			driver.findElementAndClickByXpath("//a[@id='sttb']");
-			driver
-					.findElementAndClickByXpath("//a[@id='uploadImg']");
+			driver.findElementAndClickByXpath("//a[@id='uploadImg']");
 
 			IRobotUtil robotUtil = new RobotUtilImpl();
 			robotUtil.uploadFile("菊花.jpg",

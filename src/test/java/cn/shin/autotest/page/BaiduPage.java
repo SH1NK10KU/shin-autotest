@@ -20,9 +20,9 @@ public class BaiduPage extends WebDriverDecorator {
 			.loadPropertiesFromFile(BAIDU_PAGE_PROPERTIES_FILE);
 
 	// Elements on the page.
-	private static final String TEXTFIELD_SEARCH = BAIDU_PAGE_PROPERTIES
+	public static final String TEXTFIELD_SEARCH = BAIDU_PAGE_PROPERTIES
 			.getProperty("TEXTFIELD_SEARCH");
-	private static final String BUTTON_SEARCH = BAIDU_PAGE_PROPERTIES
+	public static final String BUTTON_SEARCH = BAIDU_PAGE_PROPERTIES
 			.getProperty("BUTTON_SEARCH");
 
 	/**

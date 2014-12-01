@@ -63,15 +63,14 @@ public class BaseTest {
 
 	}
 	
-
 	@AfterTest(groups = "WebUITest")
-	public void AfterTest() {
+	public void afterTest() {
 		if (driver != null) {
 			driver.quit();
 		}
 	}
 
-	@DataProvider(name = "SampleDataProvider")
+	@DataProvider(name = "TestDataProvider")
 	public Iterator<Object[]> prepareTestData(Method method) throws IOException {
 		return new ExcelDataProvider(this.getClass().getName(),
 				method.getName());

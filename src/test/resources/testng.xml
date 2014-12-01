@@ -15,7 +15,17 @@
 				</methods>
 			</class> <!-- cn.shin.autotest.testcase.SampleTest -->
 		</classes>
-	</test> <!-- Test -->
+	</test> <!-- SampleTest -->
+	<test name="MokitoTest" junit="true">
+		<classes>
+			<class name="cn.shin.autotest.testcase.MokitoTest" />
+		</classes>
+	</test> <!-- MokitoTest -->
+	<test name="CucumberTest" junit="true">
+		<classes>
+			<class name="cn.shin.autotest.testcase.CucumberTest" />
+		</classes>
+	</test> <!-- CucumberTest -->
 	<listeners>
 		<listener class-name="cn.shin.autotest.testng.RetryListener" />
 		<listener class-name="cn.shin.autotest.testng.TestResultListener" />

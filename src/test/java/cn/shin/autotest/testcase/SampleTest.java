@@ -1,19 +1,14 @@
 package cn.shin.autotest.testcase;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.testng.AssertJUnit;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import cn.shin.autotest.dao.IActorDao;
@@ -22,7 +17,7 @@ import cn.shin.autotest.entity.Actor;
 import cn.shin.autotest.json.Json;
 import cn.shin.autotest.page.BaiduPage;
 import cn.shin.autotest.selenium.WebDriverDecorator;
-import cn.shin.autotest.testng.ExcelDataProvider;
+import cn.shin.autotest.test.BaseTest;
 import cn.shin.autotest.util.IDBUnitUtil;
 import cn.shin.autotest.util.IElementVerifyUtil;
 import cn.shin.autotest.util.IHttpClientUtil;
@@ -42,8 +37,7 @@ import com.google.gson.reflect.TypeToken;
  * @date 2014-10-27
  *
  */
-public class SampleTest {
-	private WebDriverDecorator webDriverDecorator;
+public class SampleTest extends BaseTest {
 
 	@BeforeTest(groups = "WebUITest")
 	public void BeforeTest() {
@@ -54,17 +48,17 @@ public class SampleTest {
 			"WebUITest" }, dataProvider = "SampleDataProvider")
 	public void BaiduTest(Map<String, String> data) {
 		try {
-			webDriverDecorator = new WebDriverDecorator(data.get("Browser"));
-			webDriverDecorator.get(data.get("URL"));
+			driver = new WebDriverDecorator(data.get("Browser"));
+			driver.get(data.get("URL"));
 			BaiduPage baiduPage = new BaiduPage();
 			baiduPage.search(data.get("SearchContent"));
-			webDriverDecorator.wait(2);
+			driver.wait(2);
 			AssertJUnit.assertEquals(data.get("ExpectedTitle"),
-					webDriverDecorator.getTitle());
+					driver.getTitle());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			webDriverDecorator.quit();
+			driver.quit();
 		}
 	}
 
@@ -72,15 +66,15 @@ public class SampleTest {
 			"WebUITest" }, dataProvider = "SampleDataProvider")
 	public void QQTest(Map<String, String> data) {
 		try {
-			webDriverDecorator = new WebDriverDecorator(data.get("Browser"));
-			webDriverDecorator.get(data.get("URL"));
-			webDriverDecorator.wait(2);
+			driver = new WebDriverDecorator(data.get("Browser"));
+			driver.get(data.get("URL"));
+			driver.wait(2);
 			AssertJUnit.assertEquals(data.get("ExpectedTitle"),
-					webDriverDecorator.getTitle());
+					driver.getTitle());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			webDriverDecorator.quit();
+			driver.quit();
 		}
 	}
 
@@ -144,10 +138,10 @@ public class SampleTest {
 			"Sample", "WebUITest" })
 	public void UploadFileTest() {
 		try {
-			webDriverDecorator = new WebDriverDecorator("chrome");
-			webDriverDecorator.get("http://image.baidu.com/");
-			webDriverDecorator.findElementAndClickByXpath("//a[@id='sttb']");
-			webDriverDecorator
+			driver = new WebDriverDecorator("chrome");
+			driver.get("http://image.baidu.com/");
+			driver.findElementAndClickByXpath("//a[@id='sttb']");
+			driver
 					.findElementAndClickByXpath("//a[@id='uploadImg']");
 
 			IRobotUtil robotUtil = new RobotUtilImpl();
@@ -160,20 +154,7 @@ public class SampleTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			webDriverDecorator.quit();
+			driver.quit();
 		}
-	}
-
-	@AfterTest(groups = "WebUITest")
-	public void AfterTest() {
-		if (webDriverDecorator != null) {
-			webDriverDecorator.quit();
-		}
-	}
-
-	@DataProvider(name = "SampleDataProvider")
-	public Iterator<Object[]> prepareTestData(Method method) throws IOException {
-		return new ExcelDataProvider(this.getClass().getName(),
-				method.getName());
 	}
 }

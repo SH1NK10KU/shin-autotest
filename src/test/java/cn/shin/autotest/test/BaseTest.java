@@ -2,12 +2,18 @@ package cn.shin.autotest.test;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Iterator;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+
+import cn.shin.autotest.selenium.WebDriverDecorator;
+import cn.shin.autotest.testng.ExcelDataProvider;
 
 /**
  * Provide the basic test template.
@@ -18,7 +24,8 @@ import org.testng.annotations.BeforeTest;
  */
 public class BaseTest {
 	private static Logger logger = Logger.getLogger(BaseTest.class);
-
+	protected WebDriverDecorator driver;
+	
 	@BeforeTest(groups = "WebUITest")
 	public void beforeTest() {
 		this.killDriverProcess();
@@ -54,5 +61,19 @@ public class BaseTest {
 	@AfterMethod
 	public void afterMethod(Method method) {
 
+	}
+	
+
+	@AfterTest(groups = "WebUITest")
+	public void AfterTest() {
+		if (driver != null) {
+			driver.quit();
+		}
+	}
+
+	@DataProvider(name = "SampleDataProvider")
+	public Iterator<Object[]> prepareTestData(Method method) throws IOException {
+		return new ExcelDataProvider(this.getClass().getName(),
+				method.getName());
 	}
 }

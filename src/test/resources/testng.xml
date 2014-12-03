@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite" parallel="none">
-	<test name="SampleTest">
+	<!-- <test name="SampleTest">
 		<classes>
 			<class name="cn.shin.autotest.testcase.SampleTest">
 				<methods>
@@ -13,19 +13,24 @@
 					<include name="HibernateTest" />
 					<include name="UploadFileTest" />
 				</methods>
-			</class> <!-- cn.shin.autotest.testcase.SampleTest -->
+			</class> cn.shin.autotest.testcase.SampleTest
 		</classes>
-	</test> <!-- SampleTest -->
+	</test> SampleTest
 	<test name="MokitoTest">
 		<classes>
 			<class name="cn.shin.autotest.testcase.MokitoTest" />
 		</classes>
-	</test> <!-- MokitoTest -->
+	</test> MokitoTest
 	<test name="CucumberTest" junit="true">
 		<classes>
 			<class name="cn.shin.autotest.testcase.CucumberTest" />
 		</classes>
-	</test> <!-- CucumberTest -->
+	</test> CucumberTest -->
+	<test name="JBehaveTest">
+		<classes>
+			<class name="cn.shin.autotest.story.BaseStories" />
+		</classes>
+	</test> <!-- JBehaveTest -->	
 	<listeners>
 		<listener class-name="cn.shin.autotest.testng.RetryListener" />
 		<listener class-name="cn.shin.autotest.testng.TestResultListener" />

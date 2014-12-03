@@ -1,4 +1,4 @@
-package cn.shin.autotest.testcase;
+package cn.shin.autotest.steps;
 
 import org.fest.assertions.Assertions;
 

@@ -1,5 +1,6 @@
 package cn.shin.autotest.util.impl;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import cn.shin.autotest.util.ISystemUtil;
@@ -49,5 +50,26 @@ public class SystemUtilImpl implements ISystemUtil {
 		}
 
 		return isArch32bit;
+	}
+
+	/**
+	 * Kill all the process of the driver.
+	 */
+	public void killDriverProcess() {
+		try {
+			if (getOsName().contains("Windows")) {
+				Runtime.getRuntime().exec(
+						"taskkill /f /im chromedriver_Win32_2.11.exe");
+				// Runtime.getRuntime().exec("taskkill /f /im firefox.exe");
+				Runtime.getRuntime().exec(
+						"taskkill /f /im IEDriverServer_Win32_2.44.0.exe");
+				Runtime.getRuntime().exec(
+						"taskkill /f /im IEDriverServer_Win64_2.43.0.exe");
+				Runtime.getRuntime().exec("taskkill /f /im chrome.exe");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

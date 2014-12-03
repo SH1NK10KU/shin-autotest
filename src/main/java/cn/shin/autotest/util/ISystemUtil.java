@@ -21,4 +21,9 @@ public interface ISystemUtil {
 	 *         architecture is 64-bit.
 	 */
 	public boolean isArch32bit();
+
+	/**
+	 * Kill all the process of the driver.
+	 */
+	public void killDriverProcess();
 }

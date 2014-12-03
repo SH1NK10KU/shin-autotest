@@ -18,10 +18,10 @@ Details:
 9. Provide JSON test sample.
 10.Provide HTTP (GET/POST) utility.
 11.Use Robot to meet the operation for uploading file.
+12.Integrate with JBehave.
 
 Plan:
 In order to meet the test requirements, add more and more functions into Shin-Autotest.
-Integrate with BDD framework in the future to make Shin-Autotest more flexible.
 
 PS:
 The test cases for database test are based on the database, sakila (a sample database in MySQL).

@@ -21,7 +21,7 @@ import cn.shin.autotest.entity.Actor;
  */
 @Repository("actorDao")
 public class ActorDaoImpl implements IActorDao {
-	private static final Logger logger = Logger.getLogger(ActorDaoImpl.class);
+	private static final Logger LOG = Logger.getLogger(ActorDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -35,10 +35,10 @@ public class ActorDaoImpl implements IActorDao {
 			session.save(actor);
 			transaction.commit();
 			session.close();
-			logger.info("Succeed to save the actor [ " + actor.toString()
+			LOG.info("Succeed to save the actor [ " + actor.toString()
 					+ "].");
 		} catch (RuntimeException re) {
-			logger.error("Fail to save the actor [" + actor.toString() + "].");
+			LOG.error("Fail to save the actor [" + actor.toString() + "].");
 			throw re;
 		}
 	}
@@ -52,10 +52,10 @@ public class ActorDaoImpl implements IActorDao {
 			session.update(actor);
 			transaction.commit();
 			session.close();
-			logger.info("Succeed to update the actor [ " + actor.toString()
+			LOG.info("Succeed to update the actor [ " + actor.toString()
 					+ "].");
 		} catch (RuntimeException re) {
-			logger.error("Fail to update the actor [" + actor.toString() + "].");
+			LOG.error("Fail to update the actor [" + actor.toString() + "].");
 			throw re;
 		}
 	}
@@ -69,10 +69,10 @@ public class ActorDaoImpl implements IActorDao {
 			session.delete(actor);
 			transaction.commit();
 			session.close();
-			logger.info("Succeed to delete the actor [ " + actor.toString()
+			LOG.info("Succeed to delete the actor [ " + actor.toString()
 					+ "].");
 		} catch (RuntimeException re) {
-			logger.error("Fail to delete the actor [" + actor.toString() + "].");
+			LOG.error("Fail to delete the actor [" + actor.toString() + "].");
 			throw re;
 		}
 	}
@@ -82,9 +82,9 @@ public class ActorDaoImpl implements IActorDao {
 		Session session = this.sessionFactory.openSession();
 		Actor actor = (Actor) session.load(Actor.class, id);
 		if (actor == null) {
-			logger.debug("Fail to get the actor [" + actor.toString() + "].");
+			LOG.debug("Fail to get the actor [" + actor.toString() + "].");
 		} else {
-			logger.debug("Succeed to get the actor [ " + actor.toString()
+			LOG.debug("Succeed to get the actor [ " + actor.toString()
 					+ "].");
 		}
 		return actor;

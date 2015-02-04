@@ -24,7 +24,6 @@ import cn.shin.autotest.util.impl.SystemUtilImpl;
  *
  */
 public class BaseTest {
-	private static Logger logger = Logger.getLogger(BaseTest.class);
 	private ISystemUtil systemUtil = new SystemUtilImpl();
 	protected WebDriverDecorator driver;
 

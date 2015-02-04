@@ -41,7 +41,7 @@ import cn.shin.autotest.util.IDBUnitUtil;
  *
  */
 public class DBUnitUtilImpl implements IDBUnitUtil {
-	private static Logger logger = Logger.getLogger(DBUnitUtilImpl.class);
+	private static Logger LOG = Logger.getLogger(DBUnitUtilImpl.class);
 	private static IDatabaseConnection connection;
 //	private static FileUtilImpl fileUtil = new FileUtilImpl();
 
@@ -52,7 +52,7 @@ public class DBUnitUtilImpl implements IDBUnitUtil {
 
 	static {
 		try {
-			Class driverClass = Class.forName(jdbcProperty.getJdbcDirver());
+			Class<?> driverClass = Class.forName(jdbcProperty.getJdbcDirver());
 			java.sql.Connection jdbcConnection = DriverManager.getConnection(
 					jdbcProperty.getJdbcUrl(), jdbcProperty.getJdbcUsername(),
 					jdbcProperty.getJdbcPassword());
@@ -102,11 +102,11 @@ public class DBUnitUtilImpl implements IDBUnitUtil {
 					new File(xml).getAbsolutePath()));
 			FlatDtdDataSet.write(fullDataSet, new FileOutputStream(
 					new File(dtd).getAbsolutePath()));
-			logger.info("DATABASE_FULL.xml is generated in the path, "
+			LOG.info("DATABASE_FULL.xml is generated in the path, "
 					+ System.getProperty("user.dir")
 					+ jdbcProperty.getDbunitDataPath()
 					+ jdbcProperty.getDbunitExportFolder() + "/");
-			logger.info("DATABASE_FULL.dtd is generated in the path, "
+			LOG.info("DATABASE_FULL.dtd is generated in the path, "
 					+ System.getProperty("user.dir")
 					+ jdbcProperty.getDbunitDataPath()
 					+ jdbcProperty.getDbunitExportFolder() + "/");
@@ -153,11 +153,11 @@ public class DBUnitUtilImpl implements IDBUnitUtil {
 					xml).getAbsolutePath()));
 			FlatDtdDataSet.write(partialDataSet, new FileOutputStream(new File(
 					dtd).getAbsolutePath()));
-			logger.info("DATABASE_FULL.xml is generated in the path, "
+			LOG.info("DATABASE_FULL.xml is generated in the path, "
 					+ System.getProperty("user.dir")
 					+ jdbcProperty.getDbunitDataPath()
 					+ jdbcProperty.getDbunitExportFolder() + "/");
-			logger.info("DATABASE_FULL.dtd is generated in the path, "
+			LOG.info("DATABASE_FULL.dtd is generated in the path, "
 					+ System.getProperty("user.dir")
 					+ jdbcProperty.getDbunitDataPath()
 					+ jdbcProperty.getDbunitExportFolder() + "/");

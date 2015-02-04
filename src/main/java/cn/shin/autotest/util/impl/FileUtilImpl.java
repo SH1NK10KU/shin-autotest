@@ -14,7 +14,7 @@ import cn.shin.autotest.util.IFileUtil;
  * @date 2014-11-06
  */
 public class FileUtilImpl implements IFileUtil {
-	private static Logger logger = Logger.getLogger(FileUtilImpl.class);
+	private static Logger LOG = Logger.getLogger(FileUtilImpl.class);
 
 	/**
 	 * Create the folder with the specific name in the specific path.
@@ -29,10 +29,10 @@ public class FileUtilImpl implements IFileUtil {
 		File file = new File(formatPath + folderName);
 		if (!file.exists()) {
 			file.mkdirs();
-			logger.info("Create the folder named \"" + folderName
+			LOG.info("Create the folder named \"" + folderName
 					+ "\" in the path (\"" + formatPath + "\") successfully.");
 		} else {
-			logger.error("Fail to create the folder named \"" + folderName
+			LOG.error("Fail to create the folder named \"" + folderName
 					+ "\" in the path (\"" + formatPath + "\")!");
 		}
 	}
@@ -50,10 +50,10 @@ public class FileUtilImpl implements IFileUtil {
 		File file = new File(formatPath + fileNameWithExtension);
 		try {
 			file.createNewFile();
-			logger.info("Create the file named \"" + fileNameWithExtension
+			LOG.info("Create the file named \"" + fileNameWithExtension
 					+ "\" in the path (\"" + formatPath + "\") successfully.");
 		} catch (IOException e) {
-			logger.error("Fail to create the file named \""
+			LOG.error("Fail to create the file named \""
 					+ fileNameWithExtension + "\" in the path (\"" + formatPath
 					+ "\")!");
 		}
@@ -72,10 +72,10 @@ public class FileUtilImpl implements IFileUtil {
 		File file = new File(formatPath + fileNameWithExtension);
 		if (file.isFile() && file.exists()) {
 			file.delete();
-			logger.info("Delete the file named \"" + fileNameWithExtension
+			LOG.info("Delete the file named \"" + fileNameWithExtension
 					+ "\" in the path (\"" + formatPath + "\") successfully.");
 		} else {
-			logger.error("There is no such file named \""
+			LOG.error("There is no such file named \""
 					+ fileNameWithExtension + "\" in the path (\"" + formatPath
 					+ "\")!");
 		}
@@ -105,10 +105,10 @@ public class FileUtilImpl implements IFileUtil {
 				}
 			}
 			file.delete();
-			logger.info("Delete the folder named \"" + folderName
+			LOG.info("Delete the folder named \"" + folderName
 					+ "\" in the path (\"" + formatPath + "\") successfully.");
 		} else {
-			logger.error("There is no such folder named \"" + folderName
+			LOG.error("There is no such folder named \"" + folderName
 					+ "\" in the path (\"" + formatPath + "\")!");
 		}
 	}

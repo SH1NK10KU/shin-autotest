@@ -68,7 +68,6 @@ public class SystemUtilImpl implements ISystemUtil {
 				Runtime.getRuntime().exec("taskkill /f /im chrome.exe");
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

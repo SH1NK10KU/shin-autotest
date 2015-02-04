@@ -1,8 +1,8 @@
 package cn.shin.autotest.testng;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -25,12 +25,12 @@ public class ExcelDataProvider implements Iterator<Object[]> {
 			"classpath*:/applicationContext.xml");
 	private static TestngProperty testngProperty = applicationContext
 			.getBean(TestngProperty.class);
-	private static Logger logger = Logger.getLogger(ExcelDataProvider.class);
+	private static Logger LOG = Logger.getLogger(ExcelDataProvider.class);
 
 	private int rowNum = 0;
 	private int currentRowNo = 1;
 	private int columnNum = 0;
-	private ArrayList<String> columnName;
+	private List<String> columnName;
 	private IExcelUtil excelUtil = new ExcelUtilImpl();
 
 	/**
@@ -46,7 +46,7 @@ public class ExcelDataProvider implements Iterator<Object[]> {
 		String path = testngProperty.getXlsPath()
 				+ className.substring(className.lastIndexOf(".") + 1,
 						className.length()) + ".xls";
-		logger.info("Load test data from " + path);
+		LOG.info("Load test data from " + path);
 		excelUtil.openExcel(path);
 		excelUtil.getSheetByName(caseName);
 		rowNum = excelUtil.getRowNum();
@@ -70,10 +70,10 @@ public class ExcelDataProvider implements Iterator<Object[]> {
 	 * Fetch next test data from Excel.
 	 */
 	public Object[] next() {
-		ArrayList<String> values = excelUtil.getCellsInRow(this.currentRowNo);
+		List<String> values = excelUtil.getCellsInRow(this.currentRowNo);
 		Map<String, String> data = new HashMap<String, String>();
 
-		for (int index = 0; index < this.columnNum; index++) {
+		for (int index = this.columnNum - 1; index >= 0; index--) {
 			data.put(this.columnName.get(index), values.get(index));
 		}
 

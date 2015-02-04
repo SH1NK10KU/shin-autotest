@@ -14,7 +14,7 @@ import cn.shin.autotest.util.IElementVerifyUtil;
  * 
  */
 public class ElementVerifyUtilImpl implements IElementVerifyUtil {
-	private static Logger logger = Logger
+	private static Logger LOG = Logger
 			.getLogger(ElementVerifyUtilImpl.class);
 	private WebDriverDecorator webDriverDecorator = new WebDriverDecorator();
 
@@ -26,7 +26,7 @@ public class ElementVerifyUtilImpl implements IElementVerifyUtil {
 	 */
 	public void verifyElementIsDisplayedByXpath(String xpath) {
 		if (!webDriverDecorator.isElementDisplayedByXpath(xpath)) {
-			logger.error("The element should be displayed!");
+			LOG.error("The element should be displayed!");
 			throw new ElementIsNotDisplayedException();
 		}
 	}
@@ -39,7 +39,7 @@ public class ElementVerifyUtilImpl implements IElementVerifyUtil {
 	 */
 	public void verifyElementIsNotDisplayedByXpath(String xpath) {
 		if (webDriverDecorator.isElementDisplayedByXpath(xpath)) {
-			logger.error("The element should not be displayed!");
+			LOG.error("The element should not be displayed!");
 			throw new ElementIsDisplayedException();
 		}
 	}
@@ -56,12 +56,12 @@ public class ElementVerifyUtilImpl implements IElementVerifyUtil {
 	public void verifyElementIsDisplayedByXpath(String xpath, boolean displayed) {
 		if (displayed) {
 			if (!webDriverDecorator.isElementDisplayedByXpath(xpath)) {
-				logger.error("The element should be displayed!");
+				LOG.error("The element should be displayed!");
 				throw new ElementIsNotDisplayedException();
 			}
 		} else {
 			if (webDriverDecorator.isElementDisplayedByXpath(xpath)) {
-				logger.error("The element should not be displayed!");
+				LOG.error("The element should not be displayed!");
 				throw new ElementIsDisplayedException();
 			}
 		}

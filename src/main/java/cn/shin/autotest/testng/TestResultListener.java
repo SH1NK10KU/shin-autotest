@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
@@ -29,12 +30,12 @@ import cn.shin.autotest.selenium.WebDriverDecorator;
  *
  */
 public class TestResultListener extends TestListenerAdapter {
-	private static Logger logger = Logger.getLogger(TestResultListener.class);
+	private static Logger LOG = Logger.getLogger(TestResultListener.class);
 
 	@Override
 	public void onTestFailure(ITestResult tr) {
 		super.onTestFailure(tr);
-		logger.info("[" + tr.getName() + "] is failure.\n");
+		LOG.info("[" + tr.getName() + "] is failure.\n");
 		Reporter.log("[" + tr.getName() + "] is failure.\n");
 		captureScreen(tr);
 	}
@@ -42,21 +43,21 @@ public class TestResultListener extends TestListenerAdapter {
 	@Override
 	public void onTestSkipped(ITestResult tr) {
 		super.onTestSkipped(tr);
-		logger.info("[" + tr.getName() + "] is skipped.\n");
+		LOG.info("[" + tr.getName() + "] is skipped.\n");
 		Reporter.log("[" + tr.getName() + "] is skipped.\n");
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult tr) {
 		super.onTestSuccess(tr);
-		logger.info("[" + tr.getName() + "] is success.\n");
+		LOG.info("[" + tr.getName() + "] is success.\n");
 		Reporter.log("[" + tr.getName() + "] is success.\n");
 	}
 
 	@Override
 	public void onTestStart(ITestResult tr) {
 		super.onTestStart(tr);
-		logger.info("[" + tr.getName() + "] start");
+		LOG.info("[" + tr.getName() + "] start");
 		Reporter.log("[" + tr.getName() + "] start");
 	}
 
@@ -65,7 +66,7 @@ public class TestResultListener extends TestListenerAdapter {
 		super.onFinish(testContext);
 
 		// List of test results which we will delete later
-		ArrayList<ITestResult> testsToBeRemoved = new ArrayList<ITestResult>();
+		List<ITestResult> testsToBeRemoved = new ArrayList<ITestResult>();
 		// collect all id's from passed test
 		Set<Integer> passedTestIds = new HashSet<Integer>();
 		for (ITestResult passedTest : testContext.getPassedTests()

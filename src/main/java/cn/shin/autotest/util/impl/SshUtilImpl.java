@@ -19,11 +19,11 @@ import com.jcraft.jsch.Session;
  * @date 2014-11-07
  */
 public class SshUtilImpl {
-	private Logger logger = Logger.getLogger(SshUtilImpl.class);
+	private Logger LOG = Logger.getLogger(SshUtilImpl.class);
 	private static final int DEFAULT_SSH_TIMEOUT = 3000;
 
 	public SshUtilImpl() {
-		// TODO Auto-generated constructor stub
+
 	}
 
 	public Session openSession(String userName, String password, String host,
@@ -40,9 +40,7 @@ public class SshUtilImpl {
 			session = new JSch().getSession(userName, host, port);
 			session = skipHostKeyChecking(session);
 			session.setPassword(password);
-
 		} catch (JSchException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return session;
@@ -85,7 +83,7 @@ public class SshUtilImpl {
 		} catch (JSchException e) {
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		} finally {
 			if (channel != null) {
 				channel.disconnect();
@@ -137,16 +135,12 @@ public class SshUtilImpl {
 				if (channel.isClosed()) {
 					break;
 				}
-				try {
-					Thread.sleep(1000);
-				} catch (Exception ee) {
-				}
+				Thread.sleep(1000);
 			}
-
 		} catch (JSchException e) {
 
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		} finally {
 			if (channel != null) {
 				channel.disconnect();

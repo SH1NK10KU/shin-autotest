@@ -55,8 +55,6 @@ public class SampleTest extends BaseTest {
 			driver.wait(2);
 			Assertions.assertThat(driver.getTitle()).isEqualTo(
 					data.get("ExpectedTitle"));
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			driver.quit();
 		}
@@ -71,8 +69,6 @@ public class SampleTest extends BaseTest {
 			driver.wait(2);
 			Assertions.assertThat(driver.getTitle()).isEqualTo(
 					data.get("ExpectedTitle"));
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			driver.quit();
 		}
@@ -150,8 +146,6 @@ public class SampleTest extends BaseTest {
 			IElementVerifyUtil elementVerifyUtil = new ElementVerifyUtilImpl();
 			elementVerifyUtil
 					.verifyElementIsDisplayedByXpath("//span[@class='s_ipt_a']");
-		} catch (Exception e) {
-			e.printStackTrace();
 		} finally {
 			driver.quit();
 		}

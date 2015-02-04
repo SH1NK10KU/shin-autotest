@@ -13,7 +13,7 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
  * @date 2014-11-25
  */
 public class WebDriverEventListenerImpl implements WebDriverEventListener {
-	private static Logger logger = Logger
+	private static Logger LOG = Logger
 			.getLogger(WebDriverEventListenerImpl.class);
 
 	@Override
@@ -24,7 +24,7 @@ public class WebDriverEventListenerImpl implements WebDriverEventListener {
 
 	@Override
 	public void afterNavigateTo(String url, WebDriver driver) {
-		logger.info("Navigate to the url: " + url);
+		LOG.info("Navigate to the url: " + url);
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class WebDriverEventListenerImpl implements WebDriverEventListener {
 
 	@Override
 	public void afterClickOn(WebElement element, WebDriver driver) {
-		logger.info("Click on the element: " + element.toString());
+		LOG.info("Click on the element: " + element.toString());
 	}
 
 	@Override
@@ -82,7 +82,7 @@ public class WebDriverEventListenerImpl implements WebDriverEventListener {
 
 	@Override
 	public void afterChangeValueOf(WebElement element, WebDriver driver) {
-		logger.info("Change value of the element: " + element.toString()
+		LOG.info("Change value of the element: " + element.toString()
 				+ " with the value, " + element.getAttribute("value"));
 	}
 

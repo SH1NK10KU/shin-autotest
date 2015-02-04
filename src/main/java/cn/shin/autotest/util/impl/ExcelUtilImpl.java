@@ -3,6 +3,7 @@ package cn.shin.autotest.util.impl;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 import cn.shin.autotest.testng.ExcelDataProvider;
 import cn.shin.autotest.util.IExcelUtil;
@@ -41,10 +42,8 @@ public class ExcelUtilImpl implements IExcelUtil {
 			ws.setEncoding("UTF-8");
 			workbook = Workbook.getWorkbook(inputStream);
 		} catch (BiffException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -80,10 +79,10 @@ public class ExcelUtilImpl implements IExcelUtil {
 	/**
 	 * Get the name of the columns.
 	 * 
-	 * @return ArrayList<String>
+	 * @return List<String>
 	 */
-	public ArrayList<String> getColumnName() {
-		ArrayList<String> columnName = new ArrayList<String>();
+	public List<String> getColumnName() {
+		List<String> columnName = new ArrayList<String>();
 		if (this.getRowNum() > 0) {
 			columnName = this.getCellsInRow(0);
 		}
@@ -93,10 +92,10 @@ public class ExcelUtilImpl implements IExcelUtil {
 	/**
 	 * Get the values of the cells in the specific row.
 	 * 
-	 * return ArrayList<String>
+	 * return List<String>
 	 */
-	public ArrayList<String> getCellsInRow(int rowNum) {
-		ArrayList<String> values = new ArrayList<String>();
+	public List<String> getCellsInRow(int rowNum) {
+		List<String> values = new ArrayList<String>();
 		Cell[] cells = sheet.getRow(rowNum);
 		for (int i = 0; i < cells.length; i++) {
 			values.add(cells[i].getContents().toString());

@@ -21,13 +21,13 @@ public class RetryAnalyzerImpl implements IRetryAnalyzer {
 			"classpath*:/applicationContext.xml");
 	private static TestngProperty testngProperty = applicationContext
 			.getBean(TestngProperty.class);
-	public static final Logger logger = Logger
+	private static final Logger LOG = Logger
 			.getLogger(RetryAnalyzerImpl.class);
 
 	private int retrycount = 1;
 
 	static {
-		logger.info("Retry time for TestNG is "
+		LOG.info("Retry time for TestNG is "
 				+ testngProperty.getRetryTimes()
 				+ " while the test is failure.");
 	}
@@ -37,7 +37,7 @@ public class RetryAnalyzerImpl implements IRetryAnalyzer {
 		if (retrycount <= testngProperty.getRetryTimes()) {
 			String message = "Retry for [" + result.getName() + "]: "
 					+ retrycount;
-			logger.info(message);
+			LOG.info(message);
 			Reporter.setCurrentTestResult(result);
 			Reporter.log("RunCount=" + (retrycount + 1));
 			retrycount++;

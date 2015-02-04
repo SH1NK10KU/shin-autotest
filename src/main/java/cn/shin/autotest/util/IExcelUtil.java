@@ -1,6 +1,6 @@
 package cn.shin.autotest.util;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import jxl.Sheet;
 import jxl.Workbook;
@@ -47,16 +47,16 @@ public interface IExcelUtil {
 	 * Get the name of the columns. (Usually the first row contains all the
 	 * names.)
 	 * 
-	 * @return ArrayList<String>
+	 * @return List<String>
 	 */
-	public ArrayList<String> getColumnName();
+	public List<String> getColumnName();
 
 	/**
 	 * Get the values of the cells in the specific row.
 	 * 
-	 * return ArrayList<String>
+	 * return List<String>
 	 */
-	public ArrayList<String> getCellsInRow(int rowNum);
+	public List<String> getCellsInRow(int rowNum);
 
 	/**
 	 * Close the Excel file.

@@ -30,7 +30,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @date 2014-10-24
  */
 public class WebDriverDecorator implements WebDriver {
-	private static Logger logger = Logger.getLogger(WebDriverDecorator.class);
+	private static Logger LOG = Logger.getLogger(WebDriverDecorator.class);
 	private static EventFiringWebDriver driver;
 	private static WebDriverEventListenerImpl eventListener = new WebDriverEventListenerImpl();
 	private WebDriverFactory webDriverFactory = new WebDriverFactory();
@@ -202,10 +202,10 @@ public class WebDriverDecorator implements WebDriver {
 		try {
 			waitForElementDisplayed(by, webDriverFactory.getDefaultTimeout())
 					.isDisplayed();
-			logger.info("The element, " + by + " is displayed.");
+			LOG.info("The element, " + by + " is displayed.");
 			return true;
 		} catch (Exception e) {
-			logger.info("The element, " + by + " is not displayed!");
+			LOG.info("The element, " + by + " is not displayed!");
 			return false;
 		}
 	}
@@ -225,7 +225,7 @@ public class WebDriverDecorator implements WebDriver {
 	 */
 	public void switchToFrame(String xpath) {
 		By by = By.xpath(xpath);
-		logger.info("Switch to the frame: " + by);
+		LOG.info("Switch to the frame: " + by);
 		driver.switchTo().frame(waitForElementDisplayed(by, 10));
 	}
 
@@ -462,7 +462,7 @@ public class WebDriverDecorator implements WebDriver {
 	 */
 	public void wait(int second) {
 		try {
-			Thread.sleep(second * 1000);
+			Thread.sleep((long) second * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}

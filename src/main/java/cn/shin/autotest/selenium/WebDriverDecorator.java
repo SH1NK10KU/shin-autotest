@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -465,6 +466,22 @@ public class WebDriverDecorator implements WebDriver {
 			Thread.sleep((long) second * 1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Switch to the new window.
+	 * 
+	 */
+	public void switchToNewWindow() {
+		String currentWindow = driver.getWindowHandle();
+		Set<String> handles = driver.getWindowHandles();
+		Iterator<String> iterator = handles.iterator();
+		while (iterator.hasNext()) {
+			if (currentWindow == iterator.next()) {
+				continue;
+			}
+			driver.switchTo().window(iterator.next());
 		}
 	}
 }

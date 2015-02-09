@@ -362,15 +362,11 @@ public class WebDriverDecorator implements WebDriver {
 	 * @param destXpath
 	 */
 	public void dragAndDropToElementByXpath(String srcXpath, String destXpath) {
-		Point srcPoint = getLocationByXpath(srcXpath);
-		int srcPointX = srcPoint.getX();
-		int srcPointY = srcPoint.getY();
+		WebElement srcElement = findElementByXpath(srcXpath);
+		WebElement destElement = findElementByXpath(destXpath);
 		Actions actions = new Actions(driver);
-		actions.moveByOffset(srcPointX, srcPointY)
-				.clickAndHold()
-				.moveByOffset(srcPointX + getLocationByXpath(destXpath).getX(),
-						srcPointY + getLocationByXpath(destXpath).getY())
-				.release().perform();
+		actions.moveToElement(srcElement).clickAndHold()
+				.moveToElement(destElement).release().perform();
 	}
 
 	/**
@@ -383,13 +379,10 @@ public class WebDriverDecorator implements WebDriver {
 	 */
 	public void dragAndDropByOffsetByXpath(String xpath, int xOffset,
 			int yOffset) {
-		Point point = getLocationByXpath(xpath);
-		int pointX = point.getX();
-		int pointY = point.getY();
+		WebElement element = findElementByXpath(xpath);
 		Actions actions = new Actions(driver);
-		actions.moveByOffset(pointX, pointY).clickAndHold()
-				.moveByOffset(pointX + xOffset, pointY + yOffset).release()
-				.perform();
+		actions.moveToElement(element).clickAndHold()
+				.moveByOffset(xOffset, yOffset).release().perform();
 	}
 
 	/**

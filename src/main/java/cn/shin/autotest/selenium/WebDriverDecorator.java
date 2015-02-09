@@ -372,8 +372,7 @@ public class WebDriverDecorator implements WebDriver {
 	/**
 	 * Drag the element by offset and drop.
 	 * 
-	 * @param point
-	 *            location of the element
+	 * @param xpath
 	 * @param xOffset
 	 * @param yOffset
 	 */

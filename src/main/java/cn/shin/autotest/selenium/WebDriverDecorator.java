@@ -31,7 +31,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * @date 2014-10-24
  */
 public class WebDriverDecorator implements WebDriver {
-	private static Logger LOG = Logger.getLogger(WebDriverDecorator.class);
+	private static final Logger LOG = Logger
+			.getLogger(WebDriverDecorator.class);
 	private static EventFiringWebDriver driver;
 	private static WebDriverEventListenerImpl eventListener = new WebDriverEventListenerImpl();
 	private WebDriverFactory webDriverFactory = new WebDriverFactory();
@@ -126,10 +127,8 @@ public class WebDriverDecorator implements WebDriver {
 	 * 
 	 * @param xpath
 	 *            xpath of the element
-	 * @param text
-	 *            text to type
 	 */
-	public void findElementAndClearByXpath(String xpath, String text) {
+	public void findElementAndClearByXpath(String xpath) {
 		By by = By.xpath(xpath);
 		waitForElementDisplayed(by, webDriverFactory.getDefaultTimeout())
 				.clear();
@@ -188,6 +187,38 @@ public class WebDriverDecorator implements WebDriver {
 		WebDriverWait wait = new WebDriverWait(driver, second);
 		WebElement element = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.xpath(xpath)));
+		return element;
+	}
+
+	/**
+	 * Wait for the element to be clickable in specific duration via locator.
+	 * 
+	 * @param by
+	 *            locator of the element
+	 * @param second
+	 *            duration for waiting
+	 * @return WebElement
+	 */
+	public WebElement waitForElementClickable(By by, int second) {
+		WebDriverWait wait = new WebDriverWait(driver, second);
+		WebElement element = wait.until(ExpectedConditions
+				.elementToBeClickable(by));
+		return element;
+	}
+
+	/**
+	 * Wait for the element to be clickable in specific duration via XPath.
+	 * 
+	 * @param xpath
+	 *            XPath of the element
+	 * @param second
+	 *            duration for waiting
+	 * @return WebElement
+	 */
+	public WebElement waitForElementClickableByXpath(String xpath, int second) {
+		WebDriverWait wait = new WebDriverWait(driver, second);
+		WebElement element = wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath(xpath)));
 		return element;
 	}
 
@@ -298,6 +329,20 @@ public class WebDriverDecorator implements WebDriver {
 	}
 
 	/**
+	 * Select the option from the specific select via the XPath.
+	 * 
+	 * @param xpath
+	 * @param optionText
+	 */
+	public void selectOptionByXpath(String xpath, String optionText) {
+		findElementAndClickByXpath(xpath);
+		String option = xpath + "/option[text()='" + optionText + "']";
+		findElementAndClickByXpath(option);
+		clickByXpath(option);
+		wait(10);
+	}
+
+	/**
 	 * Select the elements according to the XPaths.
 	 * 
 	 * @param xpaths
@@ -320,7 +365,20 @@ public class WebDriverDecorator implements WebDriver {
 	 */
 	public void moveToElementByXpath(String xpath) {
 		Actions actions = new Actions(driver);
-		actions.moveToElement(findElementByXpath(xpath)).build().perform();
+		actions.moveToElement(findElementByXpath(xpath)).perform();
+	}
+
+	/**
+	 * Move mouse to the specific element via XPath.
+	 * 
+	 * @param xpath
+	 *            XPath of the element
+	 */
+	public void moveToElementJqueryByXpath(String xpath) {
+		WebElement target = driver.findElement(By.xpath(xpath));
+		((JavascriptExecutor) driver).executeScript(
+				"$(arguments[0]).mouseover();", target);
+		wait(2);
 	}
 
 	/**
@@ -385,6 +443,40 @@ public class WebDriverDecorator implements WebDriver {
 	}
 
 	/**
+	 * Click the mouse via XPath.
+	 * 
+	 * @param xpath
+	 *            XPath of the element
+	 */
+	public void clickByXpath(String xpath) {
+		Actions actions = new Actions(driver);
+		actions.click(findElementByXpath(xpath)).build().perform();
+	}
+
+	/**
+	 * Click the mouse using jQuery via XPath.
+	 * 
+	 * @param xpath
+	 *            XPath of the element
+	 */
+	public void clickJqueryByXpath(String xpath) {
+		WebElement target = driver.findElement(By.xpath(xpath));
+		((JavascriptExecutor) driver).executeScript("$(arguments[0]).click();",
+				target);
+	}
+
+	/**
+	 * Click the right mouse via XPath.
+	 * 
+	 * @param xpath
+	 *            XPath of the element
+	 */
+	public void rightClickByXpath(String xpath) {
+		Actions actions = new Actions(driver);
+		actions.contextClick(findElementByXpath(xpath)).build().perform();
+	}
+
+	/**
 	 * Double click the mouse via XPath.
 	 * 
 	 * @param xpath
@@ -443,7 +535,7 @@ public class WebDriverDecorator implements WebDriver {
 		try {
 			FileUtils.copyFile(srcFile, destFile);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOG.error("IOException");
 		}
 	}
 
@@ -457,7 +549,7 @@ public class WebDriverDecorator implements WebDriver {
 		try {
 			Thread.sleep((long) second * 1000);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			LOG.error("InterruptedException");
 		}
 	}
 
@@ -475,5 +567,6 @@ public class WebDriverDecorator implements WebDriver {
 			}
 			driver.switchTo().window(iterator.next());
 		}
+		wait(2);
 	}
 }

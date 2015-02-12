@@ -25,7 +25,7 @@ public class ExcelDataProvider implements Iterator<Object[]> {
 			"classpath*:/applicationContext.xml");
 	private static TestngProperty testngProperty = applicationContext
 			.getBean(TestngProperty.class);
-	private static Logger LOG = Logger.getLogger(ExcelDataProvider.class);
+	private static final Logger LOG = Logger.getLogger(ExcelDataProvider.class);
 
 	private int rowNum = 0;
 	private int currentRowNo = 1;

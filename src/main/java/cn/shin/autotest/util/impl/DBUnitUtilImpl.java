@@ -41,7 +41,7 @@ import cn.shin.autotest.util.IDBUnitUtil;
  *
  */
 public class DBUnitUtilImpl implements IDBUnitUtil {
-	private static Logger LOG = Logger.getLogger(DBUnitUtilImpl.class);
+	private static final Logger LOG = Logger.getLogger(DBUnitUtilImpl.class);
 	private static IDatabaseConnection connection;
 //	private static FileUtilImpl fileUtil = new FileUtilImpl();
 

@@ -14,7 +14,7 @@ import cn.shin.autotest.util.IElementVerifyUtil;
  * 
  */
 public class ElementVerifyUtilImpl implements IElementVerifyUtil {
-	private static Logger LOG = Logger
+	private static final Logger LOG = Logger
 			.getLogger(ElementVerifyUtilImpl.class);
 	private WebDriverDecorator webDriverDecorator = new WebDriverDecorator();
 

@@ -19,7 +19,7 @@ import com.jcraft.jsch.Session;
  * @date 2014-11-07
  */
 public class SshUtilImpl {
-	private Logger LOG = Logger.getLogger(SshUtilImpl.class);
+	private final Logger LOG = Logger.getLogger(SshUtilImpl.class);
 	private static final int DEFAULT_SSH_TIMEOUT = 3000;
 
 	public SshUtilImpl() {

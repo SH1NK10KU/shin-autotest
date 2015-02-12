@@ -14,7 +14,7 @@ import cn.shin.autotest.util.IFileUtil;
  * @date 2014-11-06
  */
 public class FileUtilImpl implements IFileUtil {
-	private static Logger LOG = Logger.getLogger(FileUtilImpl.class);
+	private static final Logger LOG = Logger.getLogger(FileUtilImpl.class);
 
 	/**
 	 * Create the folder with the specific name in the specific path.

@@ -30,7 +30,7 @@ import cn.shin.autotest.selenium.WebDriverDecorator;
  *
  */
 public class TestResultListener extends TestListenerAdapter {
-	private static Logger LOG = Logger.getLogger(TestResultListener.class);
+	private static final Logger LOG = Logger.getLogger(TestResultListener.class);
 
 	@Override
 	public void onTestFailure(ITestResult tr) {

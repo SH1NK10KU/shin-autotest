@@ -13,7 +13,7 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
  * @date 2014-11-25
  */
 public class WebDriverEventListenerImpl implements WebDriverEventListener {
-	private static Logger LOG = Logger
+	private static final Logger LOG = Logger
 			.getLogger(WebDriverEventListenerImpl.class);
 
 	@Override
